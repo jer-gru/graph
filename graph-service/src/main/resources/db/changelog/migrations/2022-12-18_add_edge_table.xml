@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd"
+    logicalFilePath="classpath:/db/changelog/migrations/2022-12-18_add_edge_table.xml">
+
+    <changeSet id="2022-12-18_edge_1" author="JG">
+        <createSequence sequenceName="edge_seq" incrementBy="50"/>
+    </changeSet>
+
+    <changeSet id="2022-12-18_edge_2" author="JG">
+        <createTable tableName="edge">
+            <column name="id" type="bigint" defaultValueSequenceNext="edge_seq">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="source_id" type="bigint">
+                <constraints references="node(id)" foreignKeyName="node_edge_id_source_fkey"/>
+            </column>
+            <column name="destination_id" type="bigint">
+                <constraints references="node(id)" foreignKeyName="node_edge_id_destination_fkey"/>
+            </column>
+            <column name="created_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2022-12-18_edge_3" author="JG">
+        <addUniqueConstraint tableName="edge" columnNames="source_id, destination_id"/>
+    </changeSet>
+
+</databaseChangeLog>

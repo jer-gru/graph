@@ -1,0 +1,41 @@
+# Typically *NIX text editors, by default, append '~' to files on saving to make backups
+*~
+*.bak
+.editorconfig
+
+# IntelliJ specific files/directories
+out
+.idea
+*.ipr
+*.iws
+**/*.iml
+
+# Eclipse specific files/directories
+.classpath
+.project
+.settings
+.metadata
+.checkstyle
+.vscode
+.factorypath
+
+# NetBeans specific files/directories
+.nbattrs
+
+# tools dir contains reproducable tools like exe4j
+*.exe4j
+
+# Miscellaneous
+*.log
+*.exe
+
+
+### Maven ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties

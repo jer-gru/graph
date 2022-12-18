@@ -1,0 +1,48 @@
+---
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: graph-service
+  main:
+    banner-mode: off
+  datasource:
+    url: jdbc:postgresql://localhost:5432/graph
+    username: graph
+    password: graph
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            # Workaround for a compatibility issue of Spring Boot 2 with Hibernate and Postgres Driver
+            # See https://github.com/spring-projects/spring-boot/issues/12007
+            non_contextual_creation: true
+  h2:
+    console:
+      enabled: false
+  liquibase:
+    change-log: classpath:/db/changelog/master.xml
+    labels: "default"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - info
+
+buhl:
+  security:
+    info:
+      allowed-ip-ranges:
+        - "127.0.0.1"
+        - "::1"
+    health:
+      allowed-ip-ranges:
+        - "127.0.0.1"
+        - "::1"

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!--
+        There is an ongoing bug with spring and liquibase, which prevents us from using includeAll with fat jars.
+        This bug is open since a few years and they don't get it. Even jhipster recommends to not use it.
+
+        - http://www.liquibase.org/documentation/includeall.html
+        - https://liquibase.jira.com/browse/CORE-2948
+        - https://liquibase.jira.com/browse/CORE-2863
+        - https://liquibase.jira.com/browse/CORE-2869
+        - https://github.com/liquibase/liquibase/pull/698
+        - https://github.com/jhipster/generator-jhipster/issues/4034
+
+        As a workaround we have to declare each migration.
+    -->
+    <!-- <includeAll path="migrations/" relativeToChangelogFile="true"/> -->
+
+    <include file="master-migrations.xml" relativeToChangelogFile="true"/>
+    <include file="master-demo-data.xml" relativeToChangelogFile="true" labels="demo-data"/>
+
+</databaseChangeLog>

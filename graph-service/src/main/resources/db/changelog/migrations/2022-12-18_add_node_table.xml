@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd"
+    logicalFilePath="classpath:/db/changelog/migrations/2022-12-18_add_node_table.xml">
+
+    <changeSet id="2022-12-18_node_1" author="JG">
+        <createSequence sequenceName="node_seq" incrementBy="50"/>
+    </changeSet>
+
+    <changeSet id="2022-12-18_node_2" author="JG">
+        <createTable tableName="node">
+            <column name="id" type="bigint" defaultValueSequenceNext="node_seq">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2022-12-18_node_3" author="JG">
+        <addUniqueConstraint tableName="node" columnNames="name"/>
+    </changeSet>
+
+
+</databaseChangeLog>
